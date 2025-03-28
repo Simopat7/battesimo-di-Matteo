@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Battesimo di Matteo</title>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome per le icone -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" 
+        integrity="sha512-Fo3rlrZj/kTcXF0EC6hHkW+JxJNY+8pIm8F7R1kRVmTeOeC7co0bDR4xP60J/Y0X+aJt0d1E5PZyD7roEJ1bkQ==" 
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    /* Reset e impostazioni di base */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(180deg, #e0f7fa, #b3e5fc);
+      color: #333;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    
+    /* Header con gradiente da blu a azzurro e testo bianco */
+    header {
+      position: relative;
+      background: linear-gradient(180deg, #0277bd, #81d4fa);
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      border-bottom: 5px solid #0277bd;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.3);
+      z-index: 1;
+    }
+    header .intro {
+      position: relative;
+      z-index: 2;
+      padding: 0 1em;
+      color: #fff;
+    }
+    header h1 {
+      font-family: 'Lora', serif;
+      font-size: 3em;
+      margin-bottom: 0.5em;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.7);
+      font-weight: bold;
+    }
+    header p {
+      font-size: 1.2em;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+      font-weight: bold;
+    }
+    header .date {
+      font-size: 1.3em;
+      margin-top: 0.5em;
+      font-weight: bold;
+      color: #e1f5fe;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.7);
+    }
+    
+    /* Logo tematico giocoso */
+    .baptism-logo {
+      text-align: center;
+      margin: 1em 0;
+      font-size: 3em;
+      color: #0277bd;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+    
+    /* Container principale */
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 1em;
+    }
+    
+    /* Sezioni generiche con bordi stondati, rilievi e transizioni */
+    .section {
+      background: #fff;
+      padding: 2em;
+      margin-bottom: 2em;
+      border-radius: 20px;
+      border: 2px solid #b3e5fc;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .section:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    }
+    .section h2, .section h3 {
+      font-family: 'Lora', serif;
+      color: #0277bd;
+      margin-bottom: 1em;
+      padding-bottom: 0.3em;
+      border-bottom: 2px solid #b3e5fc;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      font-weight: bold;
+    }
+    
+    /* Sezione foto profilo */
+    .profile-photo {
+      text-align: center;
+      margin: 2em 0;
+    }
+    .profile-photo img {
+      width: 250px;
+      height: 250px;
+      border-radius: 50%;
+      border: 8px solid #0277bd;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .profile-photo img:hover {
+      transform: scale(1.05);
+    }
+    
+    /* Sezione Informazioni Evento con intestazione centrata */
+    .info-event {
+      text-align: center;
+      padding: 1em;
+    }
+    .info-event .center-heading {
+      font-family: 'Lora', serif;
+      font-size: 2em;
+      color: #0277bd;
+      margin-bottom: 1.5em;
+      border-bottom: 2px solid #b3e5fc;
+      display: inline-block;
+      padding-bottom: 0.3em;
+      font-weight: bold;
+    }
+    .info-event .columns {
+      display: flex;
+      justify-content: center;
+      gap: 2em;
+      flex-wrap: wrap;
+    }
+    .info-event .column {
+      flex: 1 1 300px;
+      padding: 1em;
+      text-align: left;
+    }
+    .info-event .column .detail {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      font-weight: bold;
+      margin-bottom: 0.5em;
+    }
+    .info-event .column .detail i {
+      color: #0277bd;
+      font-size: 1.5em;
+    }
+    /* Aggiungo una barra verticale fissa al centro (solo su desktop) */
+    @media (min-width: 768px) {
+      .info-event .columns {
+        position: relative;
+      }
+      .info-event .divider {
+        position: absolute;
+        top: 10%;
+        bottom: 10%;
+        left: 50%;
+        width: 2px;
+        background-color: #b3e5fc;
+      }
+    }
+    
+    /* Sezione RSVP */
+    .rsvp-section form {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+    }
+    .rsvp-section label {
+      font-weight: bold;
+    }
+    .rsvp-section input, 
+    .rsvp-section select, 
+    .rsvp-section textarea {
+      padding: 0.8em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 1em;
+      transition: border-color 0.3s;
+    }
+    .rsvp-section input:focus, 
+    .rsvp-section select:focus, 
+    .rsvp-section textarea:focus {
+      border-color: #0277bd;
+      outline: none;
+    }
+    .rsvp-section button {
+      padding: 0.9em;
+      background-color: #0277bd;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 1.1em;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-weight: bold;
+    }
+    .rsvp-section button:hover {
+      background-color: #02669a;
+    }
+    
+    /* Sezione Luoghi: layout a due colonne con dettagli giocosi */
+    .locations {
+      display: flex;
+      gap: 2em;
+      flex-wrap: wrap;
+    }
+    .location {
+      background: #fff;
+      flex: 1 1 400px;
+      padding: 1.5em;
+      border-radius: 20px;
+      border: 2px solid #b3e5fc;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .location:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    }
+    .location .detail-line {
+      margin: 0.5em 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    .location .detail-line i {
+      color: #0277bd;
+    }
+    
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 1.5em 0;
+      background: linear-gradient(180deg, #0277bd, #01579b);
+      color: #fff;
+      font-size: 0.9em;
+      border-top: 4px solid #b3e5fc;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+      header h1 { font-size: 2.5em; }
+      .info-event .divider { display: none; }
+      .locations { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="intro">
+      <h1><strong>Battesimo di Matteo</strong></h1>
+      <p><strong>Un giorno indimenticabile per celebrare la vita e l'amore</strong></p>
+      <div class="date"><i class="fas fa-calendar-alt"></i> <strong>14 Giugno 2025</strong></div>
+    </div>
+  </header>
+  
+  <!-- Logo tematico: icone baby, croce, cuore e stella -->
+  <div class="baptism-logo">
+    <i class="fas fa-baby"></i>
+    <i class="fas fa-cross" style="margin-left: 0.5em;"></i>
+    <i class="fas fa-heart" style="margin-left: 0.5em; color:#e91e63;"></i>
+    <i class="fas fa-star" style="margin-left: 0.5em; color:#ffc107;"></i>
+  </div>
+
+  <div class="container">
+    <!-- Foto profilo di Matteo -->
+    <section class="section profile-photo">
+      <img src="path-to-matteo-photo.jpg" alt="Foto di Matteo">
+    </section>
+
+    <!-- Sezione Informazioni Evento con intestazione centrata -->
+    <section class="section info-event">
+      <h2 class="center-heading"><strong>Dettagli Evento</strong></h2>
+      <div class="columns">
+        <!-- Colonna sinistra: Messa -->
+        <div class="column left">
+          <h3><i class="fas fa-church"></i> <strong>Messa</strong></h3>
+          <div class="detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <span><strong>Chiesa Santissimo Sacramento</strong></span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-road"></i>
+            <span><strong>Largo Agosta</strong></span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-clock"></i>
+            <span><strong>11:30</strong></span>
+          </div>
+        </div>
+        <!-- Divisore verticale (solo su desktop) -->
+        <div class="divider"></div>
+        <!-- Colonna destra: Pranzo a buffet -->
+        <div class="column right">
+          <h3><i class="fas fa-utensils"></i> <strong>Pranzo a buffet</strong></h3>
+          <div class="detail">
+            <i class="fas fa-map-marker-alt"></i>
+            <span><strong>Nuovo Tuscolo Sporting Club</strong></span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-road"></i>
+            <span><strong>via di Porta Furba</strong></span>
+          </div>
+          <div class="detail">
+            <i class="fas fa-clock"></i>
+            <span><strong>13:30</strong></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione RSVP -->
+    <section class="section rsvp-section" id="conferma">
+      <h2><i class="fas fa-check-circle"></i> <strong>Conferma Partecipazione</strong></h2>
+      <p><strong>Facci sapere</strong> se sarai dei nostri e il numero dei partecipanti. Se hai particolari esigenze, inserisci il tuo messaggio nel campo "Note".</p>
+      <form action="submit_form.php" method="POST">
+        <label for="nome"><i class="fas fa-user"></i> <strong>Nome e Cognome:</strong></label>
+        <input type="text" id="nome" name="nome" placeholder="Inserisci il tuo nome" required>
+        
+        <label for="partecipanti"><i class="fas fa-users"></i> <strong>Numero di partecipanti:</strong></label>
+        <select id="partecipanti" name="partecipanti" required>
+          <option value="" disabled selected>Seleziona il numero</option>
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
+        
+        <label for="note"><i class="fas fa-comment"></i> <strong>Note:</strong></label>
+        <textarea id="note" name="note" placeholder="Eventuali richieste o commenti" rows="3"></textarea>
+        
+        <button type="submit"><i class="fas fa-paper-plane"></i> <strong>Invia Conferma</strong></button>
+      </form>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 <strong>Battesimo di Matteo</strong> - Tutti i diritti riservati</p>
+  </footer>
+</body>
+</html>
